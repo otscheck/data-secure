@@ -21,7 +21,7 @@
                     </div>
                     <div class="col-span-3">
                         <label for="date_debut_contrat" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">début du commencement du contrat</label>
-                        <input type="date" id="date_debut_contrat" value="{{ $client->date_debut_contrat }}" name="date_debut_contrat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <input type="date" id="date_debut_contrat" value="{{ \Carbon\Carbon::parse($client->date_debut_contrat)->format('Y-m-d')}}" name="date_debut_contrat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         
                     </div>
                     <div class="col-span-3">
@@ -58,7 +58,7 @@
                     </div>                                       
                 </div>
 
-                <button type="submit" class="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Ajouter un client</button>
+                <button type="submit" class="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Modifier le client</button>
             </form>
         </div>       
 

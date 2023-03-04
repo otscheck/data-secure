@@ -39,7 +39,7 @@ class ClientController extends Controller
 
     public function update(Request $request, Client $client)
     {
-        $validated = $request->validate(['num_contrat' => 'required', 'nom_complet' => 'required', 'adresse' => 'required', 'description' => '', 'date_debut_contrat' => '', 'nom_contact' => '', 'tel_contact' => '', 'dernier_mois_paye' => '']);
+        $validated = $request->validate(['num_contrat' => 'required', 'nom_complet' => 'required', 'adresse' => 'required', 'description' => '', 'date_debut_contrat' => 'date', 'nom_contact' => '', 'tel_contact' => '', 'dernier_mois_paye' => '']);
 
         $client->update($validated);
         return to_route('clients.index')->with('message', 'client modifié');
