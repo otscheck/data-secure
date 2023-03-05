@@ -17,7 +17,7 @@ class ClientFactory extends Factory
     public function definition(): array
     {
         return [
-            'num_contrat' => $this->faker->numerify('client-####'),
+            'num_contrat' => $this->faker->unique()->numerify('client-####'),
             'nom_complet' => $this->faker->name(),
             'adresse' => $this->faker->address(),
         ];

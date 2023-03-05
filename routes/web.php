@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,6 @@ Route::middleware('auth', 'role:administrateur')->name('admin.')->prefix('/admin
 });
 
 Route::resource('/clients', ClientController::class)->middleware('auth');
-
+Route::resource('/employees', EmployeeController::class)->middleware('auth');
 
 require __DIR__ . '/auth.php';
