@@ -14,7 +14,8 @@ class Employee extends Model
         'matricule',
         'nom_complet',
         'region_id',
-        'poste_id'
+        'poste_id',
+        'telephone'
     ];
 
     public function region()

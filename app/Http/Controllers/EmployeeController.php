@@ -30,7 +30,7 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate(['matricule' => 'required', 'nom_complet' => 'required', 'region_id' => '', 'poste_id' => '']);
+        $validated = $request->validate(['matricule' => 'required', 'nom_complet' => 'required', 'region_id' => '', 'poste_id' => '', 'telephone' => '']);
         Employee::create($validated);
         return to_route('employees.index');
     }
