@@ -10,6 +10,13 @@ class Employee extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'matricule',
+        'nom_complet',
+        'region_id',
+        'poste_id'
+    ];
+
     public function region()
     {
         return $this->belongsTo(Region::class);

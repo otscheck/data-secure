@@ -26,7 +26,8 @@ class EmployeeFactory extends Factory
             'region_id' => Region::inRandomOrder()->first()->id,
             'poste_id' => Poste::inRandomOrder()->first()->id,
             'prime' => $this->faker->randomFloat(2, 0, 50),
-            'engage_le' => $this->faker->dateTimeThisDecade(),
+            // 'engage_le' => $this->faker->dateTimeThisDecade(),
+            'description' => $this->faker->paragraph()
         ];
     }
 }

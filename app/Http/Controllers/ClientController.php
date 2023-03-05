@@ -21,13 +21,11 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
-
         // dd($request);
 
         $validated = $request->validate(['num_contrat' => 'required', 'nom_complet' => 'required', 'adresse' => 'required', 'description' => '', 'date_debut_contrat' => '', 'nom_contact' => '', 'tel_contact' => '', 'dernier_mois_paye' => '']);
 
         Client::create($validated);
-
         return to_route('clients.index');
     }
 

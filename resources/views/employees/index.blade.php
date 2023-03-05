@@ -7,7 +7,7 @@
     
     <div class="container mx-auto bg-amber-100 border-2 border-amber-400 rounded-xl mt-4 p-4">
         <div class="flex justify-end mb-4">
-            <a href="#" class="bg-amber-500 p-2 rounded-3xl text-sm">Modifier le dossier</a>
+            <a href="{{ route('employees.create') }}" class="bg-amber-500 p-2 rounded-3xl text-sm">Ajouter un agent</a>
         </div>
         <div class="relative overflow-x-auto rounded-lg">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
