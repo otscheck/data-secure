@@ -15,7 +15,14 @@ class Employee extends Model
         'nom_complet',
         'region_id',
         'poste_id',
-        'telephone'
+        'adresse',
+        'telephone',
+        'prime',
+        'engage_le',
+        'depart_le',
+        'taille',
+        'sexe',
+        'description'
     ];
 
     public function region()
@@ -30,7 +37,12 @@ class Employee extends Model
 
     public function getEngageLeAttribute()
     {
-        return Carbon::createFromFormat('Y-m-d', $this->attributes['engage_le'])->format('d/m/Y');
+        return Carbon::createFromFormat('Y-m-d', $this->attributes['engage_le'])->format('d-m-Y');
+    }
+
+    public function getDepartLeAttribute()
+    {
+        return Carbon::createFromFormat('Y-m-d', $this->attributes['depart_le'])->format('d-m-Y');
     }
 
     // public function getDateDebutContratAttribute()

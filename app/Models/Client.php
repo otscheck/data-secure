@@ -25,6 +25,6 @@ class Client extends Model
 
     public function getDateDebutContratAttribute()
     {
-        return Carbon::createFromFormat('Y-m-d', $this->attributes['date_debut_contrat'])->format('d/m/Y');
+        return Carbon::createFromFormat('Y-m-d', $this->attributes['date_debut_contrat'])->format('d-m-Y');
     }
 }

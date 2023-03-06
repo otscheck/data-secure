@@ -18,11 +18,9 @@
             <h1> <span class="font-extrabold">Région : </span>{{ $employee->region->nom }} </h1>
         </div>
         <div>
-            <h1> <span class="font-extrabold">Grade : </span>{{ $employee->poste->grade }} </h1>
+            <h1> <span class="font-extrabold">Grade : </span>{{ $employee->poste->grade }} (salaire de base : {{ $employee->poste->salaire }}$)</h1>
         </div>
-        <div>
-            <h1> <span class="font-extrabold">Matricule : </span>{{ $employee->matricule }} </h1>
-        </div>
+        
         <div>
             <h1> <span class="font-extrabold">Prime : </span>{{ $employee->prime }} </h1>
         </div>

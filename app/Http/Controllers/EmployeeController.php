@@ -11,7 +11,7 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        $employees = Employee::all();
+        $employees = Employee::all()->sortByDesc('id');
 
         return view('employees.index', compact('employees'));
     }
@@ -30,8 +30,57 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate(['matricule' => 'required', 'nom_complet' => 'required', 'region_id' => '', 'poste_id' => '', 'telephone' => '']);
+        $validated = $request->validate([
+            'matricule' => 'required',
+            'nom_complet' => 'required',
+            'region_id' => '',
+            'poste_id' => '',
+            'telephone' => '',
+            'adresse' => '',
+            'prime' => '',
+            'engage_le' => '',
+            'depart_le' => '',
+            'taille' => '',
+            'sexe' => '',
+            'description' => ''
+        ]);
+
         Employee::create($validated);
         return to_route('employees.index');
+    }
+
+    public function edit(Employee $employee)
+    {
+        $postes = Poste::all();
+        $regions = Region::all();
+        return view('employees.edit', compact('employee', 'postes', 'regions'));
+    }
+
+    public function update(Request $request, Employee $employee)
+    {
+        $validated = $request->validate([
+            'matricule' => 'required',
+            'nom_complet' => 'required',
+            'region_id' => '',
+            'poste_id' => '',
+            'telephone' => '',
+            'adresse' => '',
+            'prime' => '',
+            'engage_le' => '',
+            'depart_le' => '',
+            'taille' => '',
+            'sexe' => '',
+            'description' => ''
+        ]);
+
+        $employee->update($validated);
+        return to_route('employees.index')->with('message', 'dossier de l\'agent modifié');
+    }
+
+    public function destroy(Employee $employee)
+    {
+        // dd('wait');
+        $employee->delete();
+        return to_route('employees.index')->with('message', 'agent supprimé');
     }
 }
