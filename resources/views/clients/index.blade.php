@@ -28,8 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($clients as $client)
-                        
+                    @foreach ($clients as $client)                        
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $client->id }}
@@ -44,7 +43,7 @@
                             {{ $client->adresse }}                        
                         </td>                
                                    
-                        <td class="px-6 py-4 text-right">
+                        <td class="px-2 py-4 text-right">
                             <div class="flex space-x-2">
 
                                 @can('update', $client)
@@ -54,6 +53,9 @@
                                 
                                 <a href="{{ route('clients.show', $client) }}"
                                     class="font-medium text-blue-600 hover:underline">Détails</a>
+
+                                <a href="{{ route('sites.createAvecParametre', $client) }}"
+                                    class="font-medium text-green-600 hover:underline">Ajouter site</a>
 
                                 @can('delete', $client)
                                 <form action="{{ route('clients.destroy', $client) }}" method="POST" onsubmit="return confirm('Etes vous sur ?');">
@@ -68,7 +70,6 @@
                         </td>                   
                     </tr>  
                     @endforeach
-
                 </tbody>
             </table>
         </div>

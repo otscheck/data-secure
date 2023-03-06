@@ -25,6 +25,7 @@ class Employee extends Model
         'description'
     ];
 
+    /////////////// Relation ////////////////////////////////////////    
     public function region()
     {
         return $this->belongsTo(Region::class);
@@ -35,6 +36,15 @@ class Employee extends Model
         return $this->belongsTo(Poste::class);
     }
 
+    public function site()
+    {
+        return $this->hasMany(Site::class);
+    }
+
+    /////////////fin relation ///////////////////////////////
+
+
+    ///////////////////  changement format date   
     public function getEngageLeAttribute()
     {
         return Carbon::createFromFormat('Y-m-d', $this->attributes['engage_le'])->format('d-m-Y');
@@ -49,4 +59,8 @@ class Employee extends Model
     // {
     //     return Carbon::createFromFormat('Y-m-d', $this->attributes['date_debut_contrat'])->format('d/m/Y');
     // }
+
+    /////////////////////////////////
+
+
 }

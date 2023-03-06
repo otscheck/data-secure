@@ -27,4 +27,9 @@ class Client extends Model
     {
         return Carbon::createFromFormat('Y-m-d', $this->attributes['date_debut_contrat'])->format('d-m-Y');
     }
+
+    public function site()
+    {
+        return $this->hasMany(Site::class);
+    }
 }

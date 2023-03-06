@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\SiteController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
@@ -36,6 +37,8 @@ Route::middleware('auth', 'role:administrateur')->name('admin.')->prefix('/admin
 });
 
 Route::resource('/clients', ClientController::class)->middleware('auth');
+Route::get('/sites/{client}/create', [SiteController::class, 'create'])->middleware('auth')->name('sites.createAvecParametre');
+Route::resource('/sites', SiteController::class)->middleware('auth');
 Route::resource('/employees', EmployeeController::class)->middleware('auth');
 
 require __DIR__ . '/auth.php';

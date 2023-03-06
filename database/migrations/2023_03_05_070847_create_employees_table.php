@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('telephone')->nullable();
             $table->foreignId('region_id')->constrained()->onDelete('cascade')->default(1);
             $table->foreignId('poste_id')->constrained()->onDelete('cascade')->default(1);
-            $table->double('prime')->default(0);
+            $table->double('prime')->nullable();
             $table->date('engage_le')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->date('depart_le')->nullable();
             $table->double('taille', 5, 2)->nullable();
