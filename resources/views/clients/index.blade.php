@@ -54,7 +54,7 @@
                                 <a href="{{ route('clients.show', $client) }}"
                                     class="font-medium text-blue-600 hover:underline">Détails</a>
 
-                                <a href="{{ route('sites.createAvecParametre', $client) }}"
+                                <a href="{{ route('sites.create', $client) }}"
                                     class="font-medium text-green-600 hover:underline">Ajouter site</a>
 
                                 @can('delete', $client)

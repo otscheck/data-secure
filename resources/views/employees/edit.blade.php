@@ -39,28 +39,32 @@
                     <input type="text" id="adresse" name="adresse" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Adresse civil" value="{{ $employee->adresse }}">
                 </div>
                 <div class="">
+                    <label for="quartier" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Quartier</label>
+                    <input type="text" id="quartier" name="quartier" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Quartier" value="{{ $employee->quartier }}">
+                </div>
+                <div class="">
                     <label for="telephone" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Téléphone</label>
-                    <input type="text" id="telephone" name="telephone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="numéro de téléphone" value="{{ value('nom_complet') }}">
+                    <input type="text" id="telephone" name="telephone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="numéro de téléphone" value="{{ $employee->telephone }}">
                 </div>
                 <div class="">
                     <label for="region" class="block mb-2 text-sm font-medium text-gray-900">Région</label>
                     <select id="region" name="region_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " value="{{ $employee->region }}">
                         @foreach ($regions as $region)
-                            <option value="{{ $region->id }}">{{ $region->nom }}</option>                            
+                            <option value="{{ $region->id }}" {{ $region->id===$employee->region->id ? 'selected' : '' }}>{{ $region->nom }}</option>                            
                         @endforeach                        
                     </select>
                 </div>                
                 <div class="">
                     <label for="poste" class="block mb-2 text-sm font-medium text-gray-900">Postes</label>
-                    <select id="poste" name="poste_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $employee->poste }}">
+                    <select id="poste" name="poste_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         @foreach ($postes as $poste)
-                            <option value="{{ $poste->id }}">{{ $poste->grade }}</option>                            
+                            <option value="{{ $poste->id }}" {{ $poste->id===$employee->poste->id ? 'selected' : '' }}>{{ $poste->grade }}</option>                            
                         @endforeach                        
                     </select>
                 </div>
                 <div class="mb-2">
                     <label for="prime" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Prime</label>
-                    <input type="number" id="prime" name="prime" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="prime sur salaire" value="{{ $employee->prime }}">
+                    <input type="number" min="0" id="prime" name="prime" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="prime sur salaire" value="{{ $employee->prime }}">
                 </div>
                 <div class="mb-2">
                     <label for="engage_le" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Date de commencement</label>
@@ -99,7 +103,7 @@
                 </div>             
             </div>
                 
-            <button type="submit" class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Valider</button>            
+            <button type="submit" class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Modifier l'agent</button>            
         </form>        
     </div>
    

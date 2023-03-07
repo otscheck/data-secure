@@ -18,8 +18,9 @@ return new class extends Migration
             $table->text('adresse');
             $table->string('nom_contact')->nullable();
             $table->string('tel_contact')->nullable();
-            // $table->integer('nb_gardes_factures')->nullable();
-            // $table->integer('nb_gardes_affectes')->nullable();
+            $table->date('date_debut_contrat')->nullable();
+            $table->string('dernier_mois_paye')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

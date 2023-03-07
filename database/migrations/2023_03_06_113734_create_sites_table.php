@@ -14,9 +14,11 @@ return new class extends Migration
     {
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
+            $table->string('code')->unique();
             $table->foreignId('client_id')->constrained()->onDelete('cascade');
             $table->foreignId('region_id')->constrained()->onDelete('cascade')->default(1);
+            $table->string('adresse')->nullable();
+            $table->string('quartier')->nullable();
             $table->foreignId('employee_id')->constrained()->onDelete('cascade');
             $table->foreignId('tag_id')->constrained()->onDelete('cascade')->default(1);
             $table->date('ouvert_le')->default(DB::raw('CURRENT_TIMESTAMP'));
@@ -24,6 +26,7 @@ return new class extends Migration
             $table->date('ferme_le')->nullable();
             $table->integer('nb_agent_factures')->nullable();
             $table->integer('nb_agent_deployes')->nullable();
+            $table->integer('shift')->nullable();
             $table->integer('nb_alarme')->default(0);
             $table->integer('nb_chien')->default(0);
             $table->decimal('prix_agent')->nullable();

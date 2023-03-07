@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('matricule');
             $table->string('nom_complet');
             $table->string('adresse')->nullable();
+            $table->string('quartier')->nullable();
             $table->string('telephone')->nullable();
             $table->foreignId('region_id')->constrained()->onDelete('cascade')->default(1);
             $table->foreignId('poste_id')->constrained()->onDelete('cascade')->default(1);

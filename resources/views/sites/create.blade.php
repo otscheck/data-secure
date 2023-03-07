@@ -6,30 +6,24 @@
         </h2>
     </x-slot>
     <div class="container mx-auto bg-amber-100 border-2 border-amber-400 rounded-xl mt-4 p-4">           
-        <form method="POST" action="{{ route('employees.store') }}">
+        <form method="POST" action="{{ route('sites.store') }}">
             @csrf
+            <input type="hidden" name="client_id" value="{{ $client->id }}">
             <div class="grid grid-cols-2 gap-8 mb-4">
                 <div class="">
-                    <label for="matricule" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Matricule</label>
-                    <input type="text" id="matricule" name="matricule" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="matricule de l'élément" value="{{ old('matricule') }}">
-                    @error('matricule')
+                    <label for="code" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Code du site</label>
+                    <input type="text" id="code" name="code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="code unique du site" value="{{ old('code') }}">
+                    @error('code')
                         <span class="text-sm text-red-600 ">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="">
-                    <label for="nom_complet" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Nom complet</label>
-                    <input type="text" id="nom_complet" name="nom_complet" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="écrire le nom" value="{{ old('nom_complet') }}">
-                    @error('nom_complet')
-                        <span class="text-sm text-red-600 ">{{ $message }}</span>
-                    @enderror
+                    <label for="adresse" class="block mb-2 pl-2 text-sm font-medium text-gray-900">adresse du site</label>
+                    <input type="text" id="adresse" name="adresse" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="adresse du site" value="{{ old('adresse') }}">                    
                 </div>
                 <div class="">
-                    <label for="adresse" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Adresse</label>
-                    <input type="text" id="adresse" name="adresse" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Adresse civil" value="{{ old('adresse') }}">
-                </div>
-                <div class="">
-                    <label for="telephone" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Téléphone</label>
-                    <input type="text" id="telephone" name="telephone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="numéro de téléphone" value="{{ old('nom_complet') }}">
+                    <label for="quartier" class="block mb-2 pl-2 text-sm font-medium text-gray-900">quartier du site</label>
+                    <input type="text" id="quartier" name="quartier" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="quartier du site" value="{{ old('quartier') }}">                    
                 </div>
                 <div class="">
                     <label for="region" class="block mb-2 text-sm font-medium text-gray-900">Région</label>
@@ -38,53 +32,92 @@
                             <option value="{{ $region->id }}">{{ $region->nom }}</option>                            
                         @endforeach                        
                     </select>
-                </div>                
+                </div>
                 <div class="">
-                    <label for="poste" class="block mb-2 text-sm font-medium text-gray-900">Postes</label>
-                    <select id="poste" name="poste_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ old('poste') }}">
-                        @foreach ($postes as $poste)
-                            <option value="{{ $poste->id }}">{{ $poste->grade }}</option>                            
+                    <label for="tag" class="block mb-2 text-sm font-medium text-gray-900">Catégories</label>
+                    <select id="tag" name="tag_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        @foreach ($tags as $tag)
+                            <option value="{{ $tag->id }}">{{ $tag->nom }}</option>                            
+                        @endforeach                        
+                    </select>
+                </div>
+                <div class="">
+                    <label for="superviseur" class="block mb-2 text-sm font-medium text-gray-900">Superviseur</label>
+                    <select id="employee" name="employee_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " value="">
+                        @foreach ($employees as $employee)
+                            <option value="{{ $employee->id }}">{{ $employee->nom_complet }}</option>                            
                         @endforeach                        
                     </select>
                 </div>
                 <div class="mb-2">
-                    <label for="prime" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Prime</label>
-                    <input type="number" id="prime" name="prime" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="prime sur salaire" value="{{ old('prime') }}">
+                    <label for="ouvert_le" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Date d'ouverture du site</label>
+                    <input type="date" id="ouvert_le" name="ouvert_le" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ old('ouvert_le') }}">
                 </div>
                 <div class="mb-2">
-                    <label for="engage_le" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Date de commencement</label>
-                    <input type="date" id="engage_le" name="engage_le" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ old('engage_le') }}">
+                    <label for="derniere_visite" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Dernière visite</label>
+                    <input type="date" id="derniere_visite" name="derniere_visite" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ old('derniere_visite') }}">
                 </div>
                 <div class="mb-2">
-                    <label for="taille" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Taille</label>
-                    <input type="text" id="taille" name="taille" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="(en mètre)" value="{{ old('taille') }}">
+                    <label for="ferme_le" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Date de fermeture</label>
+                    <input type="date" id="ferme_le" name="ferme_le" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ old('ferme_le') }}">
                 </div>
-                <div class=""></div>
-                <div class="">      
-                    <label for="genre" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Genre</label>              
-                    <fieldset>
-                        <legend class="sr-only">Genre</legend>
-                        <div class="flex items-center mb-4">
-                            <input id="country-option-1" type="radio" name="sexe" value="M" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" checked>
-                            <label for="sexe-option-1" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                            Homme
-                            </label>
-                        </div>
-                        <div class="flex items-center mb-4">
-                            <input id="sexe-option-2" type="radio" name="sexe" value="F" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300">
-                            <label for="country-option-2" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                            Femme
-                            </label>
-                        </div>                    
-                    </fieldset>
-                </div>                   
+                <div class="">
+                    <label for="nb_agent_factures" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Nombre d'agents facturés</label>
+                    <input type="number" min="0" id="nb_agent_factures" name="nb_agent_factures" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" value="{{ old('nb_agent_factures') }}">
+                    @error('nb_agent_factures')
+                        <span class="text-sm text-red-600 ">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="">
+                    <label for="nb_agent_deployes" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Nombre d'agents déployés</label>
+                    <input type="number" min="0" id="nb_agent_deployes" name="nb_agent_deployes" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" value="0">
+                    @error('nb_agent_deployes')
+                        <span class="text-sm text-red-600 ">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="">
+                    <label for="nb_alarme" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Nombre d'alarmes</label>
+                    <input type="number" min="0" id="nb_alarme" name="nb_alarme" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" value="0">
+                    @error('nb_alarme')
+                        <span class="text-sm text-red-600 ">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="">
+                    <label for="nb_chien" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Nombre de chien</label>
+                    <input type="number" min="0" id="nb_chien" name="nb_chien" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" value="0">
+                    @error('nb_chien')
+                        <span class="text-sm text-red-600 ">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="">
+                    <label for="prix_agent" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Prix par agent</label>
+                    <input type="number" min="0" id="prix_agent" name="prix_agent" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" value="{{ old('prix_agent') }}">
+                    @error('prix_agent')
+                        <span class="text-sm text-red-600 ">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="">
+                    <label for="prix_chien" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Prix par chien</label>
+                    <input type="number" min="0" id="prix_chien" name="prix_chien" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" value="{{ old('prix_chien') }}">
+                    @error('prix_chien')
+                        <span class="text-sm text-red-600 ">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="">
+                    <label for="prix_alarme" min="0" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Prix par alarme</label>
+                    <input type="number" id="prix_alarme" name="prix_alarme" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" value="{{ old('prix_alarme') }}">
+                    @error('prix_alarme')
+                        <span class="text-sm text-red-600 ">{{ $message }}</span>
+                    @enderror
+                </div>
+                                   
                 <div class="mb-2 col-start-1 col-end-3">                    
-                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Note sur l'agent</label>
+                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Note sur le site</label>
                     <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="note spécial sur l'agent">{{ old('description') }}</textarea>
                 </div>             
             </div>
                 
-            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Valider</button>
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Ajouter un site</button>
         </form>        
     </div>
 

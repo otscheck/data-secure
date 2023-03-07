@@ -28,6 +28,10 @@
                     <input type="text" id="adresse" name="adresse" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Adresse civil" value="{{ old('adresse') }}">
                 </div>
                 <div class="">
+                    <label for="quartier" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Quartier</label>
+                    <input type="text" id="quartier" name="quartier" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Quartier" value="{{ old('quartier') }}">
+                </div>
+                <div class="">
                     <label for="telephone" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Téléphone</label>
                     <input type="text" id="telephone" name="telephone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="numéro de téléphone" value="{{ old('nom_complet') }}">
                 </div>
@@ -49,7 +53,7 @@
                 </div>
                 <div class="mb-2">
                     <label for="prime" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Prime</label>
-                    <input type="number" id="prime" name="prime" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="prime sur salaire" value="{{ old('prime') }}">
+                    <input type="text"  id="prime" name="prime" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="prime sur salaire" value="{{ old('prime') }}">
                 </div>
                 <div class="mb-2">
                     <label for="engage_le" class="block mb-2 pl-2 text-sm font-medium text-gray-900">Date de commencement</label>

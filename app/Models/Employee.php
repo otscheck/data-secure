@@ -16,6 +16,7 @@ class Employee extends Model
         'region_id',
         'poste_id',
         'adresse',
+        'quartier',
         'telephone',
         'prime',
         'engage_le',

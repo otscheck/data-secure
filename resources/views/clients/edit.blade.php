@@ -1,13 +1,17 @@
 <x-app-layout>
   
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Modifier le dossier de') }} {{ $client->nom_complet }}
+        </h2>
+    </x-slot>
+
     <div class="mt-12 max-w-6xl mx-auto bg-slate-300 p-4 rounded">
         <div class="flex m-2 p-2">
             <a href="{{ route('clients.index') }}" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-900 rounded">Revenir en arrière</a>
         </div> 
         
-        <div class="max-w-3xl mx-auto bg-gray-100 p-6 mt-12 rounded">
-            <h2>Ajouter le nouveau client</h2>
-
+        <div class="max-w-3xl mx-auto bg-gray-100 p-6 mt-6 rounded">
             <form class="space-y-5" method="POST" action="{{ route('clients.update', $client) }}">
                 @csrf
                 @method('PUT')

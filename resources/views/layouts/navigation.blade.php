@@ -19,6 +19,10 @@
                     <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
                         {{ __('Clients') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('sites.index')" :active="request()->routeIs('sites.index')">
+                        {{ __('Sites') }}
+                    </x-nav-link>
                    
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
                         <x-dropdown align="right" width="48">
@@ -41,6 +45,8 @@
                         </x-dropdown>
                     </div>
 
+
+                    
                     @if(Auth::user()->hasRole('administrateur'))
                     <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
                         {{ __('Admin') }}

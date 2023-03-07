@@ -37,8 +37,10 @@ Route::middleware('auth', 'role:administrateur')->name('admin.')->prefix('/admin
 });
 
 Route::resource('/clients', ClientController::class)->middleware('auth');
-Route::get('/sites/{client}/create', [SiteController::class, 'create'])->middleware('auth')->name('sites.createAvecParametre');
-Route::resource('/sites', SiteController::class)->middleware('auth');
+
+Route::resource('/sites', SiteController::class)->except(['create'])->middleware('auth');
+Route::get('/sites/{client}/create', [SiteController::class, 'create'])->middleware('auth')->name('sites.create');
+
 Route::resource('/employees', EmployeeController::class)->middleware('auth');
 
 require __DIR__ . '/auth.php';
