@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nom_complet');
             $table->string('num_contrat');
             $table->text('adresse');
+            $table->string('image')->nullable();
             $table->string('nom_contact')->nullable();
             $table->string('tel_contact')->nullable();
             $table->date('date_debut_contrat')->nullable();
@@ -30,6 +31,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::dropIfExists('clients');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 };

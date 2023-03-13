@@ -20,7 +20,8 @@ class Client extends Model
         'nom_contact',
         'tel_contact',
         'dernier_mois_paye',
-        'description'
+        'description',
+        'image',
     ];
 
     public function getDateDebutContratAttribute()

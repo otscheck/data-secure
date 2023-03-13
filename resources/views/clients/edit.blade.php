@@ -12,7 +12,7 @@
         </div> 
         
         <div class="max-w-3xl mx-auto bg-gray-100 p-6 mt-6 rounded">
-            <form class="space-y-5" method="POST" action="{{ route('clients.update', $client) }}">
+            <form class="space-y-5" method="POST" action="{{ route('clients.update', $client) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="grid grid-cols-6 gap-6">
@@ -55,7 +55,15 @@
                             <label for="adresse" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Adresse complète</label>
                             <textarea id="message" name="adresse" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Adresse complète du client">{{  $client->adresse  }}</textarea>
                         </div>
-                    </div>                   
+                    </div>
+                    <div class="col-span-6">
+                        <label for="image" class="mb-2 block text-sm font-medium text-gray-900 ">Images</label>
+                        <img src="{{ Storage::url($client->image) }}" alt="Image" class="w-32"/>
+                        <input type="file" id="image" name="image" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        @error('image')
+                            <span class="text-sm text-red-600 ">{{ $message }}</span>
+                        @enderror
+                    </div>                             
                     <div class="col-span-6">
                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Remarques et description</label>
                         <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Bon à savoir sur ce client ">{{  $client->description  }}</textarea>
